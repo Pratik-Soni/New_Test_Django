@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-from django.conf.global_settings import STATICFILES_DIRS, MEDIA_ROOT, MEDIA_URL
+from django.conf.global_settings import STATICFILES_DIRS, MEDIA_ROOT, MEDIA_URL,LOGGING
 from django.conf.urls.static import static
 from django.forms.widgets import Media
 
@@ -42,7 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'article',
+    #'formtools',    not available
+    'userprofile',
+    #'whoosh',
+    #'haystack',
+    'notification',
 ]
+
+DELETE_MESSAGE = 50
+
+MESSAGE_TAGS = {
+                DELETE_MESSAGE : 'deteled'
+                }
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,6 +74,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['/home/pratik.soni/workspace/django_test/templates',
                  '/home/pratik.soni/workspace/django_test/article/templates',
+                 '/home/pratik.soni/workspace/django_test/templates',
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -70,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -139,3 +153,45 @@ MEDIA_ROOT = '/home/pratik.soni/workspace/django_test/static'
 
 MEDIA_URL = ''
 
+"""
+WHOOSH_INDEX = os.path.join('/home/pratik.soni/workspace/test_djanog/','whoosh/')
+
+HAYSTACK_CONNECTIONS = {
+                        'default' : {
+                                     'ENGINE' : 'haystack.backends.whoosh_backend.WhoosehEngine',
+                                     'PATH' : WHOOSH_INDEX
+                                     },
+                        }
+"""
+
+
+AUTH_PROFILE_MODULE = 'userprofile.UserProfile'
+
+"""
+LOGGING = {
+           'version' : 1,
+           'disable_existing_loggers' : False,
+           'filters' : {
+                       'require_debug_file':{
+                                             '()' : 'django.utils.log.RequireDebugFalse'
+                                             }
+                       },
+           'handlers' : {
+                         'mail_admins' : {
+                                          'levels' : 'ERROR',
+                                          'filters' : ['require_debug_false'],
+                                          'class' : 'django.utlils.log.AdminEmailHandler'
+                                          }
+                         },
+           'loggers' : {
+                        'django.request' : {
+                                            'handlers' : ['mail_admins'],
+                                            'level' : 'ERROR',
+                                            'propagate' : True,
+                                            }
+                        },
+           
+                         
+                         }
+           
+"""

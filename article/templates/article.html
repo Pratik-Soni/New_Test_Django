@@ -12,7 +12,7 @@
 <p> {{ article.body }} </p>
 
 {% if article.thumbnail %}
-<p><img src="/static/assests/{{article.thumnail}}" width="200"/></p>
+<p><img src="/static/static_assets/{{article.thumbnail}}" width="200"/></p>
 {% endif %}
 
 <p> {{article.likes}} people like this article</a></p>
@@ -20,7 +20,9 @@
 
 <h2>Comments</h2>
 {% for c in article.comment_set.all %}
-<p> {{c.name}}:{{c.body}} </p>
+<p> {{c.name}}:{{c.body}} 
+<a href="/articles/delete_comment/{{c.id}}">Delete</a>
+</p>
 {% endfor %}
 
 <p><a href="/articles/add_comment/{{article.id}}">Add Comment</a></p>

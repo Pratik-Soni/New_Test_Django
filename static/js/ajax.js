@@ -2,24 +2,24 @@
  * 
  */
 
-$(function){
-	$('#search').keyup(functin()){
+$(function(){
+	$('#search').keyup(function(){
 		
 		$.ajax({
-			type: "POST"
-			url: "/article/search",
+			type: "POST",
+			url: "/articles/search/",
 			data: {
 				'search_text' : $('#search').val(),
-				'casrfmiddlewaretoken' : $("input[name=scrfmiddlewaretoken]").val()				
-			}
-			success: searchSuccess
-			dataType:'html'
+				'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()				
+			},
+			success: searchSuccess,
+			dataType: 'html'
 		});
 	});
 });
 
 function searchSuccess(data, textStatus, jqXHR)
 {
-	$('#search-result'.html(data);)
+	$('#search-results').html(data)
 	
 }

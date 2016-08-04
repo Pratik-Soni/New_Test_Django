@@ -24,9 +24,10 @@ urlpatterns = [
 ]
 """
 
-urlpatterns = patterns('',
-                       (r'^articles/', include('article.urls')),
+urlpatterns = [
+                       url(r'^articles/', include('article.urls')),
                        url(r'^admin/', include(admin.site.urls)),
+                       url(r'^notification/', include('notification.urls')),
                        
                        #User Authentication URL
                        url(r'^accounts/login/$', 'django_test.views.login'),
@@ -37,4 +38,4 @@ urlpatterns = patterns('',
                        url(r'^accounts/register/$', 'django_test.views.register_user'),
                        url(r'^accounts/register_success/$', 'django_test.views.register_success'),
                        
-                       )
+                       ]

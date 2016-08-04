@@ -3,6 +3,14 @@
 {% block content %}
 
 	<h2>Hi {{full_name}}  You are logged in now!</h2>
+	
+	{% if notification.count > 0 %}
+		<h3>Notification</h3>
+		{% for n in notification %}
+			<p><a href="/notification/show/{{n.id}}">{{n.title}}</a> </p>
+		{% endfor %}
+	{% endif%}
+	
 	<p>Click <a href="/accounts/logout">here</a>to logout. </p>
 	
 {% endblock %}
